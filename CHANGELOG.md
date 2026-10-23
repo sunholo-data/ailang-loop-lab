@@ -2,7 +2,12 @@
 
 ## 0.2.0
 
-Feature: audio 0.3 consumer workflow, still a local application (never published).
+Feature: standalone audio 0.3 consumer application, released as source on GitHub.
+
+GitHub application source release: the default dependency is now the exact published
+`sunholo/audio@0.3.0` registry version. This application is not uploaded to the
+AILANG registry. Fresh-clone compatibility and original fixture generation are
+checked before tagging the source release.
 
 - Private Off / Peak-safe / Matched take preparation with input/output sample peaks,
   active-window RMS, bounded boost and a reason for the gain. Re-preparation starts
