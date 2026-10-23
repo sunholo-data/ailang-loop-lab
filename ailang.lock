@@ -1,6 +1,6 @@
 {
   "ailang_version": "v0.54.18",
-  "generated_at": "2026-10-23T19:24:36.722502Z",
+  "generated_at": "2026-10-23T19:57:03.877418Z",
   "generator": "ailang lock v0.54.18",
   "packages": [
     {
@@ -23,10 +23,12 @@
         "sunholo/audio/reference",
         "sunholo/audio/safety"
       ],
+      "git_rev": "93314fc581a7ee2fefdc82392a92228f8b01a2dd",
+      "git_subdir": "packages/audio",
+      "git_url": "https://github.com/sunholo-data/ailang-packages.git",
       "interface_hash": "sha256:97eef01706b62c8ed5dba47909b6ea1ce840ace5f81e547f86eae0e186d73982",
       "name": "sunholo/audio",
-      "path": "../../packages/audio",
-      "source": "path",
+      "source": "git",
       "version": "0.3.0"
     }
   ],

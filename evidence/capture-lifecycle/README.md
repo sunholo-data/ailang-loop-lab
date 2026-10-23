@@ -85,6 +85,6 @@ so this does not turn every denial/unplug case into an individually attested pas
 The prototype microphone workflow has user acceptance for continued musical-feature
 work. Full hardware/configuration evidence stays a live-release check.
 
-The [next musical roadmap](../../../../design_docs/planned/live-loop-musical-roadmap.md)
+The [next musical roadmap](../../docs/design/live-loop-musical-roadmap.md)
 prioritizes level planning/recovery, hum-to-bass note capture, sound patches and
 stateful effects. No runtime code or registry version changes accompany that plan.

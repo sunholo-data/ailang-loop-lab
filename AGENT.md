@@ -1,6 +1,6 @@
 # sunholo/live_loop_lab
 
-Local application example, never a registry release. `sunholo/live_loop_lab/planner` owns pure command,
+Standalone application/reference consumer, never an AILANG registry release. `sunholo/live_loop_lab/planner` owns pure command,
 epoch/revision and boundary decisions. `sunholo/live_loop_lab/assets` generates original demo WAVs using
 sunholo/audio. The browser owns its audio clock, device lifecycle, private capture,
 rendering and sample-level acknowledgements. The Python server is only a bounded local

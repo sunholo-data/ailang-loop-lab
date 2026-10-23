@@ -1,6 +1,8 @@
-.ailang/
+**/.ailang/
+/.runtime/
+/static/audio/
+**/__pycache__/
+*.pyc
 _namedtest_body_*.ail
-.runtime/
-static/audio/*.wav
-static/audio/manifest.json
-__pycache__/
+/quality*.json
+/validation-local/

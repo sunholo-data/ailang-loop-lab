@@ -1,7 +1,7 @@
 # Audio 0.3 consumer workflow evidence
 
 Full behavior, quality sections, proof scope, tests and review limits:
-[implementation report](../../../../design_docs/implemented/audio-v3-workflow/README.md).
+[implementation report](../../docs/evidence/audio-v3-workflow.md).
 
 - `native-tests.txt`: 10/10 strict-bytecode app checks, no fallback.
 - `node-tests.txt`: 45/45 host checks, including reference parity and actual-app

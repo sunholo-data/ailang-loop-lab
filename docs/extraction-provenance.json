@@ -1,0 +1,9 @@
+{
+  "sourceRepository": "https://github.com/sunholo-data/ailang-packages",
+  "sourceCommit": "93314fc581a7ee2fefdc82392a92228f8b01a2dd",
+  "sourcePrefix": "examples/live-loop",
+  "subtreeCommit": "3a34de3d237f8fcfdde2330804e74ae74353f930",
+  "method": "git subtree split; application docs and Apache-2.0 license text added separately",
+  "preservedApplicationCommits": 10,
+  "audioCandidatePin": "93314fc581a7ee2fefdc82392a92228f8b01a2dd"
+}

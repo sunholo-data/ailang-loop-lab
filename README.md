@@ -1,7 +1,7 @@
 # Loop Lab
 
-A local application and reference consumer for the [live-loop instrument](../../design_docs/planned/live-loop-instrument.md).
-Its [proposed standalone-repository split](../../design_docs/planned/loop-lab-repository-split.md)
+A local application and reference consumer for the [live-loop instrument](docs/design/live-loop-instrument.md).
+Its [standalone-repository boundary](docs/repository-split.md)
 separates application releases from the source-independent audio package.
 Four original parts share a browser audio clock. Capture stays private until an
 explicit commit, and a pure AILANG planner authorizes the revision and loop boundary.
@@ -11,15 +11,30 @@ seconds in background tabs. Automated kernel/transport checks pass. Physical
 loopback and broader platform acceptance remain open. The level/undo/export candidate
 has separate automated evidence below; it does not inherit a new browser soak pass.
 
+## Dependency and application boundary
+
+This repository owns the instrument application. Generic DSP lives in
+[sunholo/audio](https://github.com/sunholo-data/ailang-packages/tree/93314fc581a7ee2fefdc82392a92228f8b01a2dd/packages/audio).
+The prerelease app pins that candidate by exact Git revision and resolves it through
+AILANG's package cache; no sibling checkout is required. This does not mean audio
+0.3 has been registry-published. Before an application release, switch the manifest
+to the exact published registry version and regenerate the portable lock.
+
+Run `make verify` for compile, native/host/HTTP tests and the quality report. CI
+installs AILANG v0.54.18, Node 26.12.1, Python 3.13 and Z3. Optional WASM/runtime
+artifacts and generated audio are ignored. The processing package remains useful
+without this UI for game assets, speech/model output and headless audio pipelines.
+
 ## Run locally
 
-Requires AILANG >=0.54.17, Python 3 (tested 3.13.7), and a browser with AudioWorklet.
+Requires AILANG >=0.54.18, Python 3 (tested 3.13.7), and a browser with AudioWorklet.
 Node (tested 26.12.1) is needed only for host-kernel tests and the optional WASM probe.
 No npm install, model service, microphone access or cloud deployment is required.
 The current planner/quality checks also pass on the released v0.54.18 CLI.
 
 ```sh
-cd examples/live-loop
+git clone https://github.com/sunholo-data/ailang-loop-lab.git
+cd ailang-loop-lab
 ailang lock
 python3 server.py
 ```
@@ -88,7 +103,7 @@ settings so the eight-second file spans four bars at 120 BPM. This is an explici
 file handoff, not a plugin host or an automatic/continuous Live connection. Only
 this explicit download saves a recording. Project save/load is not implemented.
 
-See [workflow evidence](../../design_docs/implemented/audio-v3-workflow/README.md)
+See [workflow evidence](docs/evidence/audio-v3-workflow.md)
 for adapter parity, history/export isolation, actual-app fake-browser flow and
 package quality. Real browser download/audible acceptance of these new controls
 remains distinct from the earlier microphone feedback and runner-v2 soak.
@@ -291,6 +306,6 @@ other supported environments as needed. Then use the measured render/worker/tran
 prioritize `sunholo/audio` 0.3.0 block processing and the minimum `music_patterns`
 time/revision API. Notes extraction, controllers and AI remain later milestones.
 
-The [musical feature roadmap](../../design_docs/planned/live-loop-musical-roadmap.md)
+The [musical feature roadmap](docs/design/live-loop-musical-roadmap.md)
 now has the first level/recovery/WAV candidate implemented. Project persistence,
 local hum-to-bass note capture, instrument choices and stateful effects are next.

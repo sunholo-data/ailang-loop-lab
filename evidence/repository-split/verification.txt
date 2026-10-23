@@ -1,0 +1,124 @@
+ailang lock --check
+HEAD is now at 93314fc Design: separate generic audio and Loop Lab application scope
+✓ ailang.lock is current
+ailang check --package .
+→ Checking package sunholo/live_loop_lab (2 exported modules)...
+
+  ✓ _smoke.ail
+  ✓ assets.ail
+  ✓ planner.ail
+  ✓ planner_test.ail
+  ✓ test/fixtures/adapter_probe.ail
+
+  ! module "sunholo/live_loop_lab/_smoke" compiled but not listed in [exports].modules
+  ! module "sunholo/live_loop_lab/planner_test" compiled but not listed in [exports].modules
+  ! module "sunholo/live_loop_lab/test/fixtures/adapter_probe" compiled but not listed in [exports].modules
+
+✓ 5 files checked, all passed!
+ailang test --strict-bytecode --package .
+→ Package sunholo/live_loop_lab
+  4 source modules, 1 test files
+
+→ bytecode: 9 named-test bodies ran on the VM, 0 fell back to the evaluator; inline tests and properties run on the evaluator
+
+Test Results
+Module: sunholo/live_loop_lab
+
+Tests:
+  ✓ absolute boundary conversion covers exact and fractional cycles (3.6085ms)
+      at planner_test.ail:13:1
+  ✓ configure increments epoch and duplicate commands do not increment revision (247.5µs)
+      at planner_test.ail:18:1
+  ✓ idempotence precedes revision check within the current epoch (197.5µs)
+      at planner_test.ail:24:1
+  ✓ stale revision invalid parameter stopped and forged state are rejected (201.667µs)
+      at planner_test.ail:28:1
+  ✓ prepare uses a future boundary and refuses a second pending revision (216.709µs)
+      at planner_test.ail:35:1
+  ✓ late staging retains old track and refuses false activation (257.666µs)
+      at planner_test.ail:40:1
+  ✓ schedule then exact render acknowledgement activates once (252.917µs)
+      at planner_test.ail:46:1
+  ✓ reset rejects stale callbacks and clears pending state (214.875µs)
+      at planner_test.ail:51:1
+  ✓ JSON boundary rejects malformed missing schema fractional numbers and extra payload (215µs)
+      at planner_test.ail:55:1
+
+Properties:
+  ✓ next boundary never precedes a bounded arbitrary threshold (100 cases, 2.68875ms)
+      at planner_test.ail:60:1
+
+──────────────────────────────────────────────────
+✓ All tests passed!
+
+10 tests: 10 passed, 0 failed, 0 skipped (8.101084ms)
+  ✓ Passed: 10
+  ✗ Failed: 0
+
+Seed:
+  mode: derived
+  master seed: 0
+  derivation: ailang-property-seed-v1
+  replay: ailang test --seed 0 --package .
+
+node --test test/*.test.mjs
+✔ render receipt supplies a known clock floor and preserves exact-frame checks (0.481959ms)
+✔ real strict planner reproduces the stale-main-clock rejection and accepts the render receipt (235.218708ms)
+✔ waiters match identities, drop resolved subscriptions and reject cancellation (0.87925ms)
+✔ waiter timeout and count ceiling prevent an unbounded pending queue (1.87175ms)
+✔ cancellable delay does not leave a completed wait or report completion after stop (1.791084ms)
+✔ timing summary reports nearest-rank p95 and rejects invalid evidence (0.211959ms)
+✔ visibility accounting permits hidden intervals and snapshots do not double-count them (0.182167ms)
+✔ visibility evidence stays bounded while counting all hidden intervals (0.149333ms)
+✔ a hidden synthetic check can still receive its pending render acknowledgement (0.129125ms)
+✔ preparation trims/pads, fades edges and caps without boosting silence or quiet input (3.441959ms)
+✔ rejects nonfinite, out-of-range and resource overflow before output allocation (0.735625ms)
+✔ absolute frames do not accumulate rounded beat error (0.286583ms)
+✔ four-part renderer is silent before origin then mixes every part (2.250917ms)
+✔ all muted tracks are silent while private capture meters a nonzero signal (1.89275ms)
+✔ cancel and fixed buffer capacity drop private state and never emit input (0.089666ms)
+✔ commit activates inside the render block at the exact planned sample (2.14225ms)
+✔ late wrong-length and stale revisions retain the old program asset (1.660541ms)
+✔ 100 legal handoffs keep the exact planned frame and bounded pending slots (38.982916ms)
+✔ malformed initialization is rejected without killing the render processor (0.222125ms)
+✔ old stop/cancel messages cannot terminate a newer worklet capture (0.100458ms)
+✔ instrument permission → private capture → real-planner activation → hide/reset owns the right input (522.321917ms)
+✔ browser plan adapter agrees with AILANG on 18 signal/policy cases with runtime contracts (881.031542ms)
+✔ browser WAV export is byte-identical to the AILANG PCM16 adapter on a pinned fixture (43.601625ms)
+✔ release before permission resolves closes the late stream and emits no take (1.082958ms)
+✔ a late permission success cannot attach to or stop a later synthetic take (0.222334ms)
+✔ late permission rejection cannot cancel a newer take (0.113875ms)
+✔ only one permission request is outstanding and the gate recovers after rejection (0.138875ms)
+✔ permission preflight releases its stream without connecting a capture graph (0.307917ms)
+✔ release stops microphone tracks immediately and only its matching buffer becomes a take (0.18575ms)
+✔ automatic capacity completion releases input and ignores old device-ended callbacks (0.110042ms)
+✔ device loss cancels its current capture and drops an already queued raw buffer (0.091541ms)
+✔ dispose during permission open closes a late grant and never reconnects input (0.0795ms)
+✔ capture processor errors release input and prevent reuse until a fresh context (0.127625ms)
+✔ a missing finish acknowledgement times out without leaking input or delivering a take (10.8525ms)
+✔ invalid buffer metadata and unsupported track IDs never reach preparation (0.170833ms)
+✔ permission failure is reported without device strings and capture can be retried (0.109167ms)
+✔ private and pending assets cannot replace the exportable current asset (3.959083ms)
+✔ undo and redo stage a new revision; a new capture replaces one previous slot (3.781625ms)
+✔ rejection preserves the current/previous pair and reset drops all owned history (2.592916ms)
+✔ history validates slots, budgets and buffers and never exposes mutable owned samples (5.574834ms)
+✔ WAV is RIFF PCM16 mono with pinned half-away rounding and strict range checks (22.237333ms)
+✔ hashing uses only the view bytes, not unrelated underlying buffer data (7.31075ms)
+✔ level measurement pools stereo energy and guards report config against field injection (0.349416ms)
+✔ Float32 preparation respects the stored peak ceiling, keeps silence quiet and caps boost (1.898208ms)
+✔ worker keeps an unlevelled original so mode changes cannot compound gain or fades (20.523208ms)
+ℹ tests 45
+ℹ suites 0
+ℹ pass 45
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 991.968042
+python3 -m unittest discover -s test -p '*_test.py'
+......
+----------------------------------------------------------------------
+Ran 6 tests in 1.257s
+
+OK
+ailang pkg quality --json . > quality-local.json
