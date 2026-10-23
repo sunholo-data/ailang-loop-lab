@@ -2,9 +2,8 @@
 
 Status: extraction implemented 2026-10-23 in `sunholo-data/ailang-loop-lab`.
 Ten application commits were retained through `git subtree split`; design docs,
-licenses and local CI were added separately. The experimental consumer uses an
-exact Git pin while audio 0.3 remains unreleased. Release builds will use an exact
-registry version. The source repository keeps a migration pointer rather than
+licenses and local CI were added separately. The released application consumes
+published `sunholo/audio@0.3.0` through an exact registry dependency. The source repository keeps a migration pointer rather than
 maintaining a second application copy. See `docs/extraction-provenance.json`.
 
 ## Ownership

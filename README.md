@@ -8,17 +8,17 @@ explicit commit, and a pure AILANG planner authorizes the revision and loop boun
 **Earlier software host baseline passed:** user-run Firefox 158 at 44.1 kHz completed
 100 exact-frame handoffs and 30 audio minutes, with zero clamping and 260.413
 seconds in background tabs. Automated kernel/transport checks pass. Physical
-loopback and broader platform acceptance remain open. The level/undo/export candidate
+loopback and broader platform acceptance remain open. The level/undo/export workflow
 has separate automated evidence below; it does not inherit a new browser soak pass.
 
 ## Dependency and application boundary
 
 This repository owns the instrument application. Generic DSP lives in
-[sunholo/audio](https://github.com/sunholo-data/ailang-packages/tree/93314fc581a7ee2fefdc82392a92228f8b01a2dd/packages/audio).
-The prerelease app pins that candidate by exact Git revision and resolves it through
-AILANG's package cache; no sibling checkout is required. This does not mean audio
-0.3 has been registry-published. Before an application release, switch the manifest
-to the exact published registry version and regenerate the portable lock.
+[sunholo/audio](https://github.com/sunholo-data/ailang-packages/tree/audio-v0.3.0/packages/audio).
+The application pins the published `sunholo/audio@0.3.0` registry version and
+resolves it through AILANG's package cache. No sibling checkout or prerelease Git
+pin is required. The application source release is version 0.2.0; it is independently
+versioned and is not published as an AILANG registry package.
 
 Run `make verify` for compile, native/host/HTTP tests and the quality report. CI
 installs AILANG v0.54.18, Node 26.12.1, Python 3.13 and Z3. Optional WASM/runtime
@@ -33,7 +33,7 @@ No npm install, model service, microphone access or cloud deployment is required
 The current planner/quality checks also pass on the released v0.54.18 CLI.
 
 ```sh
-git clone https://github.com/sunholo-data/ailang-loop-lab.git
+gh repo clone sunholo-data/ailang-loop-lab
 cd ailang-loop-lab
 ailang lock
 python3 server.py
@@ -41,7 +41,7 @@ python3 server.py
 
 Open **http://127.0.0.1:8976** on the machine running the server. First startup renders
 four 8-second mono WAV fixtures at 16 kHz through the local `sunholo/audio@0.3.0`
-candidate (unchanged synthesis/PCM byte behavior). The generator
+release (unchanged synthesis/PCM byte behavior). The generator
 uses the evaluator to retain its `FS @limit=4, IO @limit=1` budget; this toolchain
 explicitly refuses that effect frame in strict bytecode. Fixture generation has a
 180-second timeout and is offline. Delete `static/audio/*.wav` after changing
@@ -307,5 +307,5 @@ prioritize `sunholo/audio` 0.3.0 block processing and the minimum `music_pattern
 time/revision API. Notes extraction, controllers and AI remain later milestones.
 
 The [musical feature roadmap](docs/design/live-loop-musical-roadmap.md)
-now has the first level/recovery/WAV candidate implemented. Project persistence,
+now has the first level/recovery/WAV workflow implemented. Project persistence,
 local hum-to-bass note capture, instrument choices and stateful effects are next.

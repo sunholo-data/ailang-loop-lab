@@ -1,16 +1,17 @@
 {
   "ailang_version": "v0.54.18",
-  "generated_at": "2026-10-23T19:57:03.877418Z",
+  "generated_at": "2026-10-23T20:37:02.927517Z",
   "generator": "ailang lock v0.54.18",
   "packages": [
     {
       "ailang": ">=0.54.14",
-      "content_hash": "sha256:c87de648db78c9b41665cac6f904d6aa38d0e055491579b4a653045cec085fbd",
+      "content_hash": "sha256:a39b7372488e4fe9881f065efcd1a97594d6d6f1b2f36f98e569c0cd0f1f6874",
       "effects": [
         "IO"
       ],
       "exports": [
         "sunholo/audio/analysis",
+        "sunholo/audio/block",
         "sunholo/audio/clip",
         "sunholo/audio/clip_pcm",
         "sunholo/audio/dsp",
@@ -23,12 +24,9 @@
         "sunholo/audio/reference",
         "sunholo/audio/safety"
       ],
-      "git_rev": "93314fc581a7ee2fefdc82392a92228f8b01a2dd",
-      "git_subdir": "packages/audio",
-      "git_url": "https://github.com/sunholo-data/ailang-packages.git",
-      "interface_hash": "sha256:97eef01706b62c8ed5dba47909b6ea1ce840ace5f81e547f86eae0e186d73982",
+      "interface_hash": "sha256:b50e418677dbe148cd0fbd567298f3311d914654981454529cc5cafc35eba691",
       "name": "sunholo/audio",
-      "source": "git",
+      "source": "registry",
       "version": "0.3.0"
     }
   ],

@@ -1,16 +1,19 @@
-# Audio dependency during extraction
+# Released audio dependency
 
-The application currently consumes the audio 0.3 candidate at immutable revision
-`93314fc581a7ee2fefdc82392a92228f8b01a2dd` from the public ailang-packages Git
-repository. The manifest/lock resolve a package under `packages/audio`; they do not
-require an application developer to check out that repository as a sibling.
+Loop Lab 0.2.0 consumes the published `sunholo/audio@0.3.0` registry package through
+an exact manifest/portable-lock pin. Neither a sibling producer checkout nor a
+prerelease Git reference is required for normal builds.
 
-This is prerelease integration, not a claim that audio 0.3 is registry-published.
-Before a released application build, replace that Git dependency with the exact
-published registry version, regenerate the lock and run `make verify` from a fresh
-clone. Keep the candidate producer revision reachable until that switch is complete.
+Audio content identity:
+`sha256:a39b7372488e4fe9881f065efcd1a97594d6d6f1b2f36f98e569c0cd0f1f6874`.
+The package's interface-v2 is
+`e323556e6a947daaa5af0d4dfd9474b06bc84a041ba381803affb10d587cc730`.
 
-Local co-development may explicitly use a path dependency in a temporary developer
-checkout. Do not commit machine-specific paths or vendor the audio package here.
-Generic source changes belong upstream in ailang-packages; consume a new pin/version
-and rerun the application compatibility tests.
+The extraction bootstrap previously used producer revision
+`93314fc581a7ee2fefdc82392a92228f8b01a2dd`. That is historical provenance;
+the committed release manifest/lock no longer depend on it.
+
+Run `ailang lock` and `make verify` from a clean clone to resolve and validate the
+registry consumer. Local co-development may explicitly use a temporary path
+dependency; do not commit machine-specific paths or vendor the library here.
+Generic DSP changes belong upstream in ailang-packages.

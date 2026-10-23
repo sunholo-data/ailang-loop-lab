@@ -3,13 +3,12 @@ name = "sunholo/live_loop_lab"
 version = "0.2.0"
 edition = "1"
 ailang = ">=0.54.18"
-description = "Local four-part loop instrument: private take levels, boundary-safe undo/redo and committed WAV downloads; pure revision planner and deterministic fixtures; never published"
+description = "Local four-part loop instrument: private take levels, boundary-safe undo/redo and committed WAV downloads; pure revision planner and deterministic fixtures; not an AILANG registry package"
 license = "Apache-2.0"
 [exports]
 modules = ["sunholo/live_loop_lab/planner", "sunholo/live_loop_lab/assets"]
 [dependencies]
-# Prerelease integration pin; switch to the registry's exact 0.3.0 after publication.
-"sunholo/audio" = {git = "https://github.com/sunholo-data/ailang-packages.git", rev = "93314fc581a7ee2fefdc82392a92228f8b01a2dd", subdir = "packages/audio"}
+"sunholo/audio" = "0.3.0"
 [effects]
 max = ["IO", "FS"]
 [metadata]
