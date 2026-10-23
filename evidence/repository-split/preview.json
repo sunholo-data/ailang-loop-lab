@@ -1,0 +1,8 @@
+{
+  "origin": "https://voights-mac-studio.tail97eda0.ts.net:8449",
+  "backend": "standalone application on loopback 8978",
+  "rootHtml200": true,
+  "moduleSha256": "65100c2812dd038d2a4c5b0f37a2aa956547ae0bfb45598cf58700ad87e763bb",
+  "otherServeRoutesUnchanged": true,
+  "source": "server-side checks, not a new device/browser acceptance run"
+}
